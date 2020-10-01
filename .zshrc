@@ -19,6 +19,10 @@ cdcw() {
  cd && cd Documents/consumer-web/ && pull_latest_from_remote
 }
 
+update() {
+ npm run jest-clear-cache && npm run test -- -u && npm run update-css-types
+}
+
 alias diff="git diff"
 alias gcod="gco develop && git pull origin develop"
 alias gcoq="gco qa && git pull origin qa"
