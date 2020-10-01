@@ -1,0 +1,24 @@
+# dot files
+.env
+.DS_Store
+.idea
+.vscode
+
+# npm
+node_modules
+package-lock.json
+
+# Compiled output
+dist
+dist-server
+
+# Error log
+error-log.txt
+report.*.json
+npm-debug.log
+
+# Sitespeed
+sitespeed-result
+
+# Coverage
+coverage/
