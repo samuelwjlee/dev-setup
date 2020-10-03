@@ -7,20 +7,37 @@ source $ZSH/oh-my-zsh.sh
 source ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-parse_git_branch() {
+ensure_personal_user_config() {
+ git config user.name "Samuel Lee"
+ git config user.email "samuelwjlee@gmail.com"
+}
+
+ensure_work_user_config() {
+ git config user.name "Samuel Lee"
+ git config user.email "samlee@housecanary.com"
+}
+
+get_curr_branch_name() {
  git rev-parse --abbrev-ref HEAD
 }
 
 pull_latest_from_remote() {
- git pull origin $(parse_git_branch)
+ git pull origin $(get_curr_branch_name)
 }
 
 cdcw() {
- cd && cd Documents/consumer-web/ && pull_latest_from_remote
+ ensure_work_user_context &&
+ cd &&
+ cd Documents/consumer-web/ &&
+ pull_latest_from_remote
 }
 
 update() {
- npm run jest-clear-cache && npm run test -- -u && npm run update-css-types
+ ensure_work_user_context &&
+ npm run jest-clear-cache &&
+ npm run test -- -u &&
+ npm run update-css-types &&
+ git add .
 }
 
 alias diff="git diff"
@@ -28,4 +45,5 @@ alias gcod="gco develop && git pull origin develop"
 alias gcoq="gco qa && git pull origin qa"
 alias start="npm run start"
 alias startp="npm run release && npm run serve"
+# prints out the pid of anything running on localhost:3000
 alias pid="sudo lsof -i -P | grep 3000"
