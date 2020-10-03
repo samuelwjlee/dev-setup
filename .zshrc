@@ -8,36 +8,36 @@ source ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ensure_personal_user_config() {
- git config user.name "Samuel Lee"
- git config user.email "samuelwjlee@gmail.com"
+  git config user.name "Samuel Lee"
+  git config user.email "samuelwjlee@gmail.com"
 }
 
 ensure_work_user_config() {
- git config user.name "Samuel Lee"
- git config user.email "samlee@housecanary.com"
+  git config user.name "Samuel Lee"
+  git config user.email "samlee@housecanary.com"
 }
 
 get_curr_branch_name() {
- git rev-parse --abbrev-ref HEAD
+  git rev-parse --abbrev-ref HEAD
 }
 
 pull_latest_from_remote() {
- git pull origin $(get_curr_branch_name)
+  git pull origin $(get_curr_branch_name)
+  ensure_work_user_config
 }
 
 cdcw() {
- ensure_work_user_context &&
- cd &&
- cd Documents/consumer-web/ &&
- pull_latest_from_remote
+  cd &&
+  cd Documents/consumer-web/ &&
+  pull_latest_from_remote
 }
 
 update() {
- ensure_work_user_context &&
- npm run jest-clear-cache &&
- npm run test -- -u &&
- npm run update-css-types &&
- git add .
+  ensure_work_user_config &&
+  npm run jest-clear-cache &&
+  npm run test -- -u &&
+  npm run update-css-types &&
+  git add .
 }
 
 alias diff="git diff"
