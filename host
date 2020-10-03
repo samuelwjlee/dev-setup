@@ -3,7 +3,7 @@
 ::1             localhost
 
 # host url to port development or block on browsers
-127.0.0.1 www.local.qa.ch.housecanary.net
+127.0.0.1 www.someurl.com
 
 # Added by Docker Desktop
 # To allow the same kube context to work on the host and the container:
