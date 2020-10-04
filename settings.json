@@ -1,0 +1,13 @@
+# vs_code settings file
+{
+    "window.zoomLevel": 1,
+    "editor.minimap.enabled": false,
+    "editor.wordWrap": "on",
+    "workbench.colorTheme": "One Dark Pro",
+    "files.trimTrailingWhitespace": true,
+    "editor.tabSize": 2,
+    "workbench.editor.highlightModifiedTabs": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "workbench.activityBar.visible": false,
+    "css.validate": false
+}
