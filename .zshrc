@@ -32,12 +32,22 @@ cdcw() {
   pull_latest_from_remote
 }
 
-update() {
-  ensure_work_user_config &&
+update_tests_and_css_types() {
   npm run jest-clear-cache &&
   npm run test -- -u &&
   npm run update-css-types &&
-  git add .
+}
+
+commit_changes() {
+  ensure_work_user_config &&
+  git add . &&
+  git commit -n
+}
+
+push() {
+  update_tests_and_css_types &&
+  commit_changes &&
+  git push origin $(get_curr_branch_name)
 }
 
 alias diff="git diff"
