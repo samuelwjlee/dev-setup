@@ -23,7 +23,6 @@ get_curr_branch_name() {
 
 pull_latest_from_remote() {
   git pull origin $(get_curr_branch_name)
-  ensure_work_user_config
 }
 
 cdcw() {
@@ -39,13 +38,19 @@ update_tests_and_css_types() {
 }
 
 commit_changes() {
-  ensure_work_user_config &&
   git add . &&
   git commit -n
 }
 
-push() {
+push_work_code() {
+  ensure_work_user_config &&
   update_tests_and_css_types &&
+  commit_changes &&
+  git push origin $(get_curr_branch_name)
+}
+
+push_personal_code() {
+  ensure_personal_user_config &&
   commit_changes &&
   git push origin $(get_curr_branch_name)
 }
