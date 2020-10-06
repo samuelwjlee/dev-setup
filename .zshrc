@@ -7,16 +7,6 @@ source $ZSH/oh-my-zsh.sh
 source ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-ensure_personal_user_config() {
-  git config user.name "Samuel Lee"
-  git config user.email "samuelwjlee@gmail.com"
-}
-
-ensure_work_user_config() {
-  git config user.name "Samuel Lee"
-  git config user.email "samlee@housecanary.com"
-}
-
 add_ssh_work() {
   if ! ssh-add -l | grep -q 'samlee@'; then
     ssh-add ~/.ssh/id_rsa_housecanary
@@ -27,6 +17,18 @@ add_ssh_personal() {
   if ! ssh-add -l | grep -q 'samuelwjlee@gmail.com'; then
     ssh-add ~/.ssh/id_rsa_personal
   fi
+}
+
+ensure_work_user_config() {
+  add_ssh_work
+  git config user.name "Samuel Lee"
+  git config user.email "samlee@housecanary.com"
+}
+
+ensure_personal_user_config() {
+  add_ssh_personal
+  git config user.name "Samuel Lee"
+  git config user.email "samuelwjlee@gmail.com"
 }
 
 get_curr_branch_name() {
