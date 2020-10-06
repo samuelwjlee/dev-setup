@@ -17,13 +17,13 @@ ensure_work_user_config() {
   git config user.email "samlee@housecanary.com"
 }
 
-ssh_add_work() {
+add_ssh_work() {
   if ! ssh-add -l | grep -q 'samlee@'; then
     ssh-add ~/.ssh/id_rsa_housecanary
   fi
 }
 
-ssh_add_personal() {
+add_ssh_personal() {
   if ! ssh-add -l | grep -q 'samuelwjlee@gmail.com'; then
     ssh-add ~/.ssh/id_rsa_personal
   fi
@@ -33,15 +33,15 @@ get_curr_branch_name() {
   git rev-parse --abbrev-ref HEAD
 }
 
-pull_latest_from_remote() {
+pull_remote() {
+  add_ssh_work &&
   git pull origin $(get_curr_branch_name)
 }
 
 cdcw() {
   cd &&
   cd Documents/consumer-web/ &&
-  ssh_add_work &&
-  pull_latest_from_remote
+  pull_remote
 }
 
 update_tests_and_css_types() {
