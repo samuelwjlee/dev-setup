@@ -1,4 +1,4 @@
-export ZSH="/Users/samlee/.oh-my-zsh"
+export ZSH="~/.oh-my-zsh"
 
 ZSH_THEME="agnoster"
 plugins=(zsh-syntax-highlighting)
