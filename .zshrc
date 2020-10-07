@@ -1,11 +1,14 @@
 export ZSH="~/.oh-my-zsh"
-
 ZSH_THEME="agnoster"
 plugins=(zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.oh-my-zsh/plugins/git/git.plugin.zsh
-source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH/plugins/git/git.plugin.zsh
+source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+NAME="Samuel Lee"
+EMAIL_HOUSECANARY="samlee@housecanary.com"
+EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
 
 add_ssh_work() {
   if ! ssh-add -l | grep -q 'samlee@'; then
@@ -14,21 +17,21 @@ add_ssh_work() {
 }
 
 add_ssh_personal() {
-  if ! ssh-add -l | grep -q 'samuelwjlee@gmail.com'; then
+  if ! ssh-add -l | grep -q $EMAIL_SAMUELWJLEE; then
     ssh-add ~/.ssh/id_rsa_personal
   fi
 }
 
 ensure_work_user_config() {
   add_ssh_work
-  git config user.name "Samuel Lee"
-  git config user.email "samlee@housecanary.com"
+  git config user.name $NAME
+  git config user.email $EMAIL_HOUSECANARY
 }
 
 ensure_personal_user_config() {
   add_ssh_personal
-  git config user.name "Samuel Lee"
-  git config user.email "samuelwjlee@gmail.com"
+  git config user.name $NAME
+  git config user.email $EMAIL_SAMUELWJLEE
 }
 
 get_curr_branch_name() {
