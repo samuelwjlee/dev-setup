@@ -1,5 +1,5 @@
 # Why
-In this modern age of computing, people often own more than one computing machine or switch to a different computing device more frequently than others. Setting up local environments every time from scratch can be a bit cumbersome. So this repository is to have a central location to manage and seed one's setup with one command in any machine running MacOS.
+In this modern age of computing, people often own more than one computing device or switch to a different device more frequently than others. But setting up local environments every time from scratch can be a bit cumbersome. So this repository is to have a central location to manage and seed any machine running macOS with one's setup.
 
 # What
 Setup files that could be managed remotely and applied to any machine running MacOS.
