@@ -1,5 +1,5 @@
 # Why
-In this modern age of computing, people often own more than one computing device or switch to a different device more frequently than others. But setting up local environments every time from scratch can be a bit cumbersome. So this repository is to have a central location to manage and seed any machine running macOS with one's setup.
+In this modern age of computing, people often own more than one computing device (work and personal) or switch to a different device more frequently. But setting up local environment to one's liking every time from scratch can be a bit cumbersome. So `Dandelion` is created to have a central location to manage and seed one's setup on any machine with a single command.
 
 # What
 Setup files that could be managed remotely and applied to any machine running MacOS.
