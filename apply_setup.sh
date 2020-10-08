@@ -1,3 +1,6 @@
+# path variables
+ROOT_PATH="./setup-files"
+
 # ANSI escape codes
 # https://en.wikipedia.org/wiki/ANSI_escape_code
 # Black        0;30     Dark Gray     1;30
@@ -13,10 +16,10 @@ GREEN='\033[0;32m'
 
 # automate creating or updating config files to local
 write_files_to_local() {
-  sudo cp ./.zshrc ~/.zshrc
-  sudo cp ./ssh_config ~/.ssh/config
-  sudo cp ./.gitignore_global ~/.gitignore_global
-  sudo cp ./vscode_settings.json ~/Library/Application\ Support/Code/User/settings.json
+  sudo cp $ROOT_PATH/.zshrc ~/.zshrc
+  sudo cp $ROOT_PATH/ssh_config ~/.ssh/config
+  sudo cp $ROOT_PATH/.gitignore_global ~/.gitignore_global
+  sudo cp $ROOT_PATH/vscode_settings.json ~/Library/Application\ Support/Code/User/settings.json
 
   echo "${GREEN}✅✅✅ SUCCESS! ✅✅✅\n"
 }
