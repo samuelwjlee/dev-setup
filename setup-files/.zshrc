@@ -57,19 +57,19 @@ update_tests_and_css_types() {
 
 commit_changes() {
   git add . &&
-  git commit -n
+  git commit -m "$1"
 }
 
 push_work_code() {
   ensure_work_user_config &&
   update_tests_and_css_types &&
-  commit_changes &&
+  commit_changes "$1" &&
   git push origin $(get_curr_branch_name)
 }
 
 push_personal_code() {
   ensure_personal_user_config &&
-  commit_changes &&
+  commit_changes "$1" &&
   git push origin $(get_curr_branch_name)
 }
 
