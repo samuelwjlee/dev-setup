@@ -10,24 +10,26 @@ NAME="Samuel Lee"
 EMAIL_HOUSECANARY="samlee@housecanary.com"
 EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
 
-add_ssh() {
-  if [$1 == $EMAIL_HOUSECANARY] & [! ssh-add -l | grep -q 'samlee@']; then
+add_ssh_work() {
+  if ! ssh-add -l | grep -q 'samlee@'; then
     ssh-add ~/.ssh/id_rsa_housecanary
   fi
+}
 
-  if [$1 == $EMAIL_SAMUELWJLEE] & [! ssh-add -l | grep -q $EMAIL_SAMUELWJLEE]; then
+add_ssh_personal() {
+  if ! ssh-add -l | grep -q $EMAIL_SAMUELWJLEE; then
     ssh-add ~/.ssh/id_rsa_personal
   fi
 }
 
 ensure_work_user_config() {
-  add_ssh $EMAIL_HOUSECANARY
+  add_ssh_work
   git config user.name $NAME
   git config user.email $EMAIL_HOUSECANARY
 }
 
 ensure_personal_user_config() {
-  add_ssh $EMAIL_SAMUELWJLEE
+  add_ssh_personal
   git config user.name $NAME
   git config user.email $EMAIL_SAMUELWJLEE
 }
@@ -37,7 +39,7 @@ get_curr_branch_name() {
 }
 
 pull_remote() {
-  add_ssh $EMAIL_HOUSECANARY &&
+  add_ssh_work &&
   git pull origin $(get_curr_branch_name)
 }
 
