@@ -10,26 +10,24 @@ NAME="Samuel Lee"
 EMAIL_HOUSECANARY="samlee@housecanary.com"
 EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
 
-add_ssh_work() {
-  if ! ssh-add -l | grep -q 'samlee@'; then
+add_ssh() {
+  if [$1 == $EMAIL_HOUSECANARY] & [! ssh-add -l | grep -q 'samlee@']; then
     ssh-add ~/.ssh/id_rsa_housecanary
   fi
-}
 
-add_ssh_personal() {
-  if ! ssh-add -l | grep -q $EMAIL_SAMUELWJLEE; then
+  if [$1 == $EMAIL_SAMUELWJLEE] & [! ssh-add -l | grep -q $EMAIL_SAMUELWJLEE]; then
     ssh-add ~/.ssh/id_rsa_personal
   fi
 }
 
 ensure_work_user_config() {
-  add_ssh_work
+  add_ssh $EMAIL_HOUSECANARY
   git config user.name $NAME
   git config user.email $EMAIL_HOUSECANARY
 }
 
 ensure_personal_user_config() {
-  add_ssh_personal
+  add_ssh $EMAIL_SAMUELWJLEE
   git config user.name $NAME
   git config user.email $EMAIL_SAMUELWJLEE
 }
@@ -39,7 +37,7 @@ get_curr_branch_name() {
 }
 
 pull_remote() {
-  add_ssh_work &&
+  add_ssh $EMAIL_HOUSECANARY &&
   git pull origin $(get_curr_branch_name)
 }
 
@@ -57,19 +55,19 @@ update_tests_and_css_types() {
 
 commit_changes() {
   git add . &&
-  git commit -m "$1"
+  git commit -m $1
 }
 
 push_work_code() {
   ensure_work_user_config &&
   update_tests_and_css_types &&
-  commit_changes "$1" &&
+  commit_changes $1 &&
   git push origin $(get_curr_branch_name)
 }
 
 push_personal_code() {
   ensure_personal_user_config &&
-  commit_changes "$1" &&
+  commit_changes $1 &&
   git push origin $(get_curr_branch_name)
 }
 
