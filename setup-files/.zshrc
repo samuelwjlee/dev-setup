@@ -1,27 +1,27 @@
-ROOT="/Users/samlee"
-ZSH="$ROOT/.oh-my-zsh"
+PATH_ROOT="/Users/samlee"
+PATH_ZSH="$PATH_ROOT/.oh-my-zsh"
 ZSH_THEME="agnoster"
 plugins=(zsh-syntax-highlighting)
 
-source $ZSH/oh-my-zsh.sh
-source $ZSH/plugins/git/git.plugin.zsh
-source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $PATH_ZSH/oh-my-zsh.sh
+source $PATH_ZSH/plugins/git/git.plugin.zsh
+source $PATH_ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 NAME="Samuel Lee"
 EMAIL_HOUSECANARY="samlee@housecanary.com"
 EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
-SSH_KEY_PATH_HOUSECANARY="$ROOT/.ssh/id_rsa_housecanary"
-SSH_KEY_PATH_SAMUELWJLEE="$ROOT/.ssh/id_rsa_personal"
+PATH_SSH_KEY_HOUSECANARY="$PATH_ROOT/.ssh/id_rsa_housecanary"
+PATH_SSH_KEY_SAMUELWJLEE="$PATH_ROOT/.ssh/id_rsa_personal"
 
 add_ssh() {
   if [ "$1" = "$EMAIL_HOUSECANARY" ]; then
     # TODO: update email tied to this ssh key
     if ! ssh-add -l | grep -q "samlee@"; then
-      ssh-add "$SSH_KEY_PATH_HOUSECANARY"
+      ssh-add "$PATH_SSH_KEY_HOUSECANARY"
     fi
   elif [ "$1" = "$EMAIL_SAMUELWJLEE" ]; then
     if ! ssh-add -l | grep -q "$EMAIL_SAMUELWJLEE"; then
-      ssh-add "$SSH_KEY_PATH_SAMUELWJLEE"
+      ssh-add "$PATH_SSH_KEY_SAMUELWJLEE"
     fi
   fi
 }
