@@ -1,6 +1,8 @@
-Host github
+Host github.com
     Hostname github.com
     IdentityFile ~/.ssh/id_rsa_personal
-Host housecanary
-   Hostname git.housecanary.net
-   IdentityFile ~/.ssh/id_rsa_housecanary
+    IdentitiesOnly yes
+Host git.housecanary.net
+    Hostname git.housecanary.net
+    IdentityFile ~/.ssh/id_rsa_housecanary.com
+    IdentitiesOnly yes

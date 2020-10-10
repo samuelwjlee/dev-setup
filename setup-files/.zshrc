@@ -10,26 +10,27 @@ NAME="Samuel Lee"
 EMAIL_HOUSECANARY="samlee@housecanary.com"
 EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
 
-add_ssh_work() {
-  if ! ssh-add -l | grep -q 'samlee@'; then
-    ssh-add ~/.ssh/id_rsa_housecanary
-  fi
-}
-
-add_ssh_personal() {
-  if ! ssh-add -l | grep -q $EMAIL_SAMUELWJLEE; then
-    ssh-add ~/.ssh/id_rsa_personal
+add_ssh() {
+  if [ $1 = "$EMAIL_HOUSECANARY" ]; then
+    # TODO: update email tied to this key file
+    if ! ssh-add -l | grep -q "samlee@"; then
+      ssh-add ~/.ssh/id_rsa_housecanary
+    fi
+  elif [ $1 = "$EMAIL_SAMUELWJLEE" ]; then
+    if ! ssh-add -l | grep -q $EMAIL_SAMUELWJLEE; then
+      ssh-add ~/.ssh/id_rsa_personal
+    fi
   fi
 }
 
 ensure_work_user_config() {
-  add_ssh_work
+  add_ssh $EMAIL_HOUSECANARY
   git config user.name $NAME
   git config user.email $EMAIL_HOUSECANARY
 }
 
 ensure_personal_user_config() {
-  add_ssh_personal
+  add_ssh $EMAIL_SAMUELWJLEE
   git config user.name $NAME
   git config user.email $EMAIL_SAMUELWJLEE
 }
@@ -39,13 +40,13 @@ get_curr_branch_name() {
 }
 
 pull_remote() {
-  add_ssh_work &&
   git pull origin $(get_curr_branch_name)
 }
 
 cdcw() {
   cd &&
   cd Documents/consumer-web/ &&
+  ensure_work_user_config &&
   pull_remote
 }
 
