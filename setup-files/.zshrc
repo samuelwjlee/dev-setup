@@ -9,16 +9,18 @@ source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 NAME="Samuel Lee"
 EMAIL_HOUSECANARY="samlee@housecanary.com"
 EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
+SSH_KEY_PATH_HOUSECANARY="~/.ssh/id_rsa_housecanary"
+SSH_KEY_PATH_SAMUELWJLEE="~/.ssh/id_rsa_personal"
 
 add_ssh() {
   if [ $1 = "$EMAIL_HOUSECANARY" ]; then
-    # TODO: update email tied to this key file
+    # TODO: update email tied to this ssh key
     if ! ssh-add -l | grep -q "samlee@"; then
-      ssh-add ~/.ssh/id_rsa_housecanary
+      ssh-add $SSH_KEY_PATH_HOUSECANARY
     fi
   elif [ $1 = "$EMAIL_SAMUELWJLEE" ]; then
     if ! ssh-add -l | grep -q $EMAIL_SAMUELWJLEE; then
-      ssh-add ~/.ssh/id_rsa_personal
+      ssh-add $SSH_KEY_PATH_SAMUELWJLEE
     fi
   fi
 }
