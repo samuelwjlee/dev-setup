@@ -16,25 +16,25 @@ add_ssh() {
   if [ $1 = "$EMAIL_HOUSECANARY" ]; then
     # TODO: update email tied to this ssh key
     if ! ssh-add -l | grep -q "samlee@"; then
-      ssh-add $SSH_KEY_PATH_HOUSECANARY
+      ssh-add "$SSH_KEY_PATH_HOUSECANARY"
     fi
   elif [ $1 = "$EMAIL_SAMUELWJLEE" ]; then
-    if ! ssh-add -l | grep -q $EMAIL_SAMUELWJLEE; then
-      ssh-add $SSH_KEY_PATH_SAMUELWJLEE
+    if ! ssh-add -l | grep -q "$EMAIL_SAMUELWJLEE"; then
+      ssh-add "$SSH_KEY_PATH_SAMUELWJLEE"
     fi
   fi
 }
 
 ensure_work_user_config() {
-  add_ssh $EMAIL_HOUSECANARY
-  git config user.name $NAME
-  git config user.email $EMAIL_HOUSECANARY
+  add_ssh "$EMAIL_HOUSECANARY"
+  git config user.name "$NAME"
+  git config user.email "$EMAIL_HOUSECANARY"
 }
 
 ensure_personal_user_config() {
-  add_ssh $EMAIL_SAMUELWJLEE
-  git config user.name $NAME
-  git config user.email $EMAIL_SAMUELWJLEE
+  add_ssh "$EMAIL_SAMUELWJLEE"
+  git config user.name "$NAME"
+  git config user.email "$EMAIL_SAMUELWJLEE"
 }
 
 get_curr_branch_name() {
@@ -60,19 +60,19 @@ update_tests_and_css_types() {
 
 commit_changes() {
   git add . &&
-  git commit -m $1
+  git commit -m "$1"
 }
 
 push_work_code() {
   ensure_work_user_config &&
   update_tests_and_css_types &&
-  commit_changes $1 &&
+  commit_changes "$1" &&
   git push origin $(get_curr_branch_name)
 }
 
 push_personal_code() {
   ensure_personal_user_config &&
-  commit_changes $1 &&
+  commit_changes "$1" &&
   git push origin $(get_curr_branch_name)
 }
 
