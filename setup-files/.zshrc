@@ -1,17 +1,17 @@
 PATH_ROOT="/Users/samlee"
+PATH_SSH_KEY_HOUSECANARY="$PATH_ROOT/.ssh/id_rsa_housecanary"
+PATH_SSH_KEY_SAMUELWJLEE="$PATH_ROOT/.ssh/id_rsa_personal"
 PATH_ZSH="$PATH_ROOT/.oh-my-zsh"
+
 ZSH_THEME="agnoster"
 plugins=(zsh-syntax-highlighting)
+NAME="Samuel Lee"
+EMAIL_HOUSECANARY="samlee@housecanary.com"
+EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
 
 source $PATH_ZSH/oh-my-zsh.sh
 source $PATH_ZSH/plugins/git/git.plugin.zsh
 source $PATH_ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-NAME="Samuel Lee"
-EMAIL_HOUSECANARY="samlee@housecanary.com"
-EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
-PATH_SSH_KEY_HOUSECANARY="$PATH_ROOT/.ssh/id_rsa_housecanary"
-PATH_SSH_KEY_SAMUELWJLEE="$PATH_ROOT/.ssh/id_rsa_personal"
 
 add_ssh() {
   if [ "$1" = "$EMAIL_HOUSECANARY" ]; then
