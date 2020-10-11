@@ -1,16 +1,17 @@
-PATH_SSH_KEY_HOUSECANARY="$(echo ~/.ssh/id_rsa_housecanary)"
-PATH_SSH_KEY_SAMUELWJLEE="$(echo ~/.ssh/id_rsa_personal)"
+# zsh specific config
 ZSH="$(echo ~/.oh-my-zsh)"
-
 ZSH_THEME="agnoster"
 plugins=(zsh-syntax-highlighting)
-NAME="Samuel Lee"
-EMAIL_HOUSECANARY="samlee@housecanary.com"
-EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
-
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/git/git.plugin.zsh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# identification variables
+PATH_SSH_KEY_HOUSECANARY="$(echo ~/.ssh/id_rsa_housecanary)"
+PATH_SSH_KEY_SAMUELWJLEE="$(echo ~/.ssh/id_rsa_personal)"
+EMAIL_HOUSECANARY="samlee@housecanary.com"
+EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
+NAME="Samuel Lee"
 
 add_ssh() {
   if [ "$1" = "$EMAIL_HOUSECANARY" ]; then
@@ -25,37 +26,31 @@ add_ssh() {
   fi
 }
 
-ensure_work_user_config() {
-  add_ssh "$EMAIL_HOUSECANARY"
-  git config user.name "$NAME"
-  git config user.email "$EMAIL_HOUSECANARY"
+ensure_correct_user_config() {
+  if [ "$1" = "$EMAIL_HOUSECANARY" ]; then
+    add_ssh "$EMAIL_HOUSECANARY"
+    git config user.name "$NAME"
+    git config user.email "$EMAIL_HOUSECANARY"
+  elif [ "$1" = "$EMAIL_SAMUELWJLEE" ]; then
+    add_ssh "$EMAIL_SAMUELWJLEE"
+    git config user.name "$NAME"
+    git config user.email "$EMAIL_SAMUELWJLEE"
+  fi
 }
 
-ensure_personal_user_config() {
-  add_ssh "$EMAIL_SAMUELWJLEE"
-  git config user.name "$NAME"
-  git config user.email "$EMAIL_SAMUELWJLEE"
-}
-
-get_curr_branch_name() {
+get_branch_name() {
   git rev-parse --abbrev-ref HEAD
 }
 
 pull_remote() {
-  git pull origin $(get_curr_branch_name)
+  git pull origin $(get_branch_name)
 }
 
 cdcw() {
   cd &&
   cd Documents/consumer-web/ &&
-  ensure_work_user_config &&
+  ensure_correct_user_config "$EMAIL_HOUSECANARY" &&
   pull_remote
-}
-
-update_tests_and_css_types() {
-  npm run jest-clear-cache &&
-  npm run test -- -u &&
-  npm run update-css-types &&
 }
 
 commit_changes() {
@@ -64,16 +59,18 @@ commit_changes() {
 }
 
 push_work_code() {
-  ensure_work_user_config &&
-  update_tests_and_css_types &&
+  ensure_correct_user_config "$EMAIL_HOUSECANARY" &&
+  npm run jest-clear-cache &&
+  npm run test -- -u &&
+  npm run update-css-types &&
   commit_changes "$1" &&
-  git push origin $(get_curr_branch_name)
+  git push origin $(get_branch_name)
 }
 
 push_personal_code() {
-  ensure_personal_user_config &&
+  ensure_correct_user_config "$EMAIL_SAMUELWJLEE" &&
   commit_changes "$1" &&
-  git push origin $(get_curr_branch_name)
+  git push origin $(get_branch_name)
 }
 
 alias diff="git diff"
