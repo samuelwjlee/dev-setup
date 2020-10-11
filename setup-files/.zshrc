@@ -29,13 +29,13 @@ add_ssh() {
 ensure_correct_user_config() {
   if [ "$1" = "$EMAIL_HOUSECANARY" ]; then
     add_ssh "$EMAIL_HOUSECANARY"
-    git config user.name "$NAME"
     git config user.email "$EMAIL_HOUSECANARY"
   elif [ "$1" = "$EMAIL_SAMUELWJLEE" ]; then
     add_ssh "$EMAIL_SAMUELWJLEE"
-    git config user.name "$NAME"
     git config user.email "$EMAIL_SAMUELWJLEE"
   fi
+
+  git config user.name "$NAME"
 }
 
 get_branch_name() {
@@ -79,4 +79,5 @@ alias gcoq="gco qa && git pull origin qa"
 alias start="npm run start"
 alias startp="npm run release && npm run serve"
 # prints out the pid of anything running on localhost:3000
+# TODO: create a function to kill all processes running on 300
 alias pid="sudo lsof -i -P | grep 3000"
