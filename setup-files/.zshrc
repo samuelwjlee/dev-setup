@@ -27,7 +27,7 @@ add_ssh() {
 }
 
 ensure_correct_user_config() {
-  if [ "$1" = "$EMAIL_HOUSECANARY" | "$1" = "$EMAIL_SAMUELWJLEE"  ]; then
+  if [ "$1" = "$EMAIL_HOUSECANARY" ] || [ "$1" = "$EMAIL_SAMUELWJLEE"  ]; then
     add_ssh "$1"
     git config user.email "$1"
     git config user.name "$NAME"
