@@ -4,5 +4,5 @@ Host github.com
     IdentitiesOnly yes
 Host git.housecanary.net
     Hostname git.housecanary.net
-    IdentityFile ~/.ssh/id_rsa_housecanary.com
+    IdentityFile ~/.ssh/id_rsa_housecanary
     IdentitiesOnly yes
