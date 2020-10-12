@@ -27,15 +27,11 @@ add_ssh() {
 }
 
 ensure_correct_user_config() {
-  if [ "$1" = "$EMAIL_HOUSECANARY" ]; then
-    add_ssh "$EMAIL_HOUSECANARY"
-    git config user.email "$EMAIL_HOUSECANARY"
-  elif [ "$1" = "$EMAIL_SAMUELWJLEE" ]; then
-    add_ssh "$EMAIL_SAMUELWJLEE"
-    git config user.email "$EMAIL_SAMUELWJLEE"
+  if [ "$1" = "$EMAIL_HOUSECANARY" | "$1" = "$EMAIL_SAMUELWJLEE"  ]; then
+    add_ssh "$1"
+    git config user.email "$1"
+    git config user.name "$NAME"
   fi
-
-  git config user.name "$NAME"
 }
 
 get_branch_name() {
