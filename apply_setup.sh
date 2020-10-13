@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # path variables
 ROOT_PATH="./setup-files"
 
