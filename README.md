@@ -1,5 +1,5 @@
 # Dandelion
-A CLI to manage and seed one's setup in any machine with a single command.
+A CLI to manage and apply personal setup files in any machine with a single command.
 
 # How
 1. Update setup files in this repo as you prefer.
