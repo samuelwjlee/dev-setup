@@ -27,7 +27,9 @@ ensure_xcode_homebrew() {
 }
 
 install_apps() {
-  echo "${LIGHT_BLUE}Installing $1...\n"
+  app_name=$1
+  echo "${LIGHT_BLUE}Installing $app_name...\n"
+  # install command here
 }
 
 run() {
@@ -35,8 +37,8 @@ run() {
 
   for app_name in ${APPS_TO_INSTALL[*]}
   do
-    # download command here
     echo "${LIGHT_BLUE}Downloading $app_name...\n"
+    # download command here
     install_apps $app_name
   done
 }
