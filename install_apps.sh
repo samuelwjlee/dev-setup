@@ -2,12 +2,11 @@
 # This script has a list of apps that will be installed to a target machine
 
 APPS_TO_INSTALL=(
-  "google_chrome"
-  "brave_browser"
-  "visual_studio_code"
-  "iTerm2"
-  "slack"
-  "Spotify"
+  "google-chrome"
+  "brave-browser"
+  "visual-studio-code"
+  "iterm2"
+  "spotify"
 )
 
 LIGHT_BLUE='\033[1;34m'
@@ -27,20 +26,12 @@ ensure_xcode_homebrew() {
 }
 
 install_apps() {
-  app_name=$1
-  echo "${LIGHT_BLUE}Installing $app_name...\n"
-  # install command here
-}
-
-run() {
   ensure_xcode_homebrew
 
   for app_name in ${APPS_TO_INSTALL[*]}
   do
-    echo "${LIGHT_BLUE}Downloading $app_name...\n"
-    # download command here
-    install_apps $app_name
+    # brew cask install $app_name
   done
 }
 
-run
+install_apps
