@@ -54,19 +54,35 @@ commit_changes() {
   git commit -m "$1"
 }
 
-push_work_code() {
-  ensure_correct_user_config "$EMAIL_HOUSECANARY" &&
+run_test() {
   npm run jest-clear-cache &&
   npm run test -- -u &&
-  npm run update-css-types &&
-  commit_changes "$1" &&
+  npm run update-css-types
+}
+
+ensure_config_commit_push() {
+  email="$1"
+  message="$2"
+
+  ensure_correct_user_config "$email" &&
+  commit_changes "$message" &&
   git push origin $(get_branch_name)
 }
 
+push_work_code() {
+  option_or_message="$1"
+  message="$2"
+
+  if [ "$option_or_message" = "-n" ]; then
+    ensure_config_commit_push "$EMAIL_HOUSECANARY" "$message"
+  else
+    run_test
+    ensure_config_commit_push "$EMAIL_HOUSECANARY" "$option_or_message"
+  fi
+}
+
 push_personal_code() {
-  ensure_correct_user_config "$EMAIL_SAMUELWJLEE" &&
-  commit_changes "$1" &&
-  git push origin $(get_branch_name)
+  ensure_config_commit_push "$EMAIL_SAMUELWJLEE" "$1"
 }
 
 alias diff="git diff"
