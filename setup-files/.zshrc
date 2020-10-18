@@ -41,6 +41,7 @@ get_branch_name() {
 }
 
 pull_remote() {
+  git fetch &&
   git pull origin $(get_branch_name)
 }
 
@@ -63,7 +64,7 @@ run_test() {
   npm run update-css-types
 }
 
-ensure_config_commit_push() {
+push_code() {
   email="$1"
   message="$2"
 
@@ -84,13 +85,13 @@ push_work_code() {
     git push origin $(get_branch_name)
   else
     run_test &&
-    ensure_config_commit_push "$EMAIL_HOUSECANARY" "$option_or_message"
+    push_code "$EMAIL_HOUSECANARY" "$option_or_message"
   fi
 }
 
 push_personal_code() {
   message="$1"
-  ensure_config_commit_push "$EMAIL_SAMUELWJLEE" "$message"
+  push_code "$EMAIL_SAMUELWJLEE" "$message"
 }
 
 alias diff="git diff"
