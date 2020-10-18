@@ -76,11 +76,11 @@ push_work_code() {
   # take option -n to skip test
   if [ "$option_or_message" = "-n" ]; then
     ensure_correct_user_config "$EMAIL_HOUSECANARY" &&
-    git add .
-    git commit -n
+    git add . &&
+    git commit -n &&
     git push origin $(get_branch_name)
   else
-    run_test
+    run_test &&
     ensure_config_commit_push "$EMAIL_HOUSECANARY" "$option_or_message"
   fi
 }
