@@ -11,15 +11,16 @@ PATH_SSH_KEY_HOUSECANARY="$(echo ~/.ssh/id_rsa_housecanary)"
 PATH_SSH_KEY_SAMUELWJLEE="$(echo ~/.ssh/id_rsa_personal)"
 EMAIL_HOUSECANARY="samlee@housecanary.com"
 EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
-NAME="Samuel Lee"
+USERNAME="Samuel Lee"
 
 add_ssh() {
-  if [ "$1" = "$EMAIL_HOUSECANARY" ]; then
+  user_email="$1"
+  if [ "$user_email" = "$EMAIL_HOUSECANARY" ]; then
     # TODO: update email tied to this ssh key
     if ! ssh-add -l | grep -q "samlee@"; then
       ssh-add "$PATH_SSH_KEY_HOUSECANARY"
     fi
-  elif [ "$1" = "$EMAIL_SAMUELWJLEE" ]; then
+  elif [ "$user_email" = "$EMAIL_SAMUELWJLEE" ]; then
     if ! ssh-add -l | grep -q "$EMAIL_SAMUELWJLEE"; then
       ssh-add "$PATH_SSH_KEY_SAMUELWJLEE"
     fi
@@ -27,10 +28,11 @@ add_ssh() {
 }
 
 ensure_correct_user_config() {
-  if [ "$1" = "$EMAIL_HOUSECANARY" ] || [ "$1" = "$EMAIL_SAMUELWJLEE"  ]; then
-    add_ssh "$1"
-    git config user.email "$1"
-    git config user.name "$NAME"
+  user_email="$1"
+  if [ "$user_email" = "$EMAIL_HOUSECANARY" ] || [ "$user_email" = "$EMAIL_SAMUELWJLEE"  ]; then
+    add_ssh "$user_email"
+    git config user.email "$user_email"
+    git config user.name "$USERNAME"
   fi
 }
 
@@ -50,8 +52,9 @@ cdcw() {
 }
 
 commit_changes() {
+  message="$1"
   git add . &&
-  git commit -m "$1"
+  git commit -m "$message"
 }
 
 run_test() {
@@ -86,7 +89,8 @@ push_work_code() {
 }
 
 push_personal_code() {
-  ensure_config_commit_push "$EMAIL_SAMUELWJLEE" "$1"
+  message="$1"
+  ensure_config_commit_push "$EMAIL_SAMUELWJLEE" "$message"
 }
 
 alias diff="git diff"
