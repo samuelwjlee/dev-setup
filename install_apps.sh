@@ -11,16 +11,22 @@ APPS_TO_INSTALL=(
 
 LIGHT_BLUE='\033[1;34m'
 
+print_message() {
+  clear
+  message="$1"
+  echo "\n${LIGHT_BLUE}$message...\n"
+}
+
 ensure_xcode_homebrew() {
   # check if xcode is installed and install if needed
   if ! which xcodebuild | grep -q "/xcodebuild"; then
-    echo "${LIGHT_BLUE}Installing xcode..."
+    print_message "Now installing xcode"
     xcode-select --install
   fi
 
   # check if homebrew is installed and install if needed
   if ! which brew | grep -q "/brew"; then
-    echo "${LIGHT_BLUE}Installing homebrew..."
+    print_message "Now installing homebrew"
     mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
   fi
 }
@@ -30,6 +36,8 @@ install_apps() {
 
   for app_name in ${APPS_TO_INSTALL[*]}
   do
+    print_message "Now installing $app_name"
+    # TODO: spike on how to do this synchronously
     # brew cask install $app_name
   done
 }
