@@ -94,11 +94,13 @@ push_personal_code() {
   push_code "$EMAIL_SAMUELWJLEE" "$message"
 }
 
+kill_process_on_port() {
+  port_num="$1"
+  sudo kill -9 $(sudo lsof -t -i:"$port_num")
+}
+
 alias diff="git diff"
 alias gcod="gco develop && git pull origin develop"
 alias gcoq="gco qa && git pull origin qa"
 alias start="npm run start"
 alias startp="npm run release && npm run serve"
-# prints out the pid of anything running on localhost:3000
-# TODO: create a function to kill all processes running on 300
-alias pid="sudo lsof -i -P | grep 3000"
