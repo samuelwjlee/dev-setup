@@ -91,7 +91,7 @@ push_work_code() {
   if [ "$option_or_message" = "-n" ]; then
     ensure_correct_user_config "$EMAIL_HOUSECANARY" &&
     git add . &&
-    git commit -n &&
+    git commit -n -m "$message" &&
     git push origin "$curr_branch_name"
   else
     run_test &&
