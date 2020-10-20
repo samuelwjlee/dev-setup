@@ -13,6 +13,8 @@ EMAIL_HOUSECANARY="samlee@housecanary.com"
 EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
 USERNAME="Samuel Lee"
 
+RED='\033[0;31m'
+
 add_ssh() {
   user_email="$1"
   if [ "$user_email" = "$EMAIL_HOUSECANARY" ]; then
@@ -76,13 +78,21 @@ push_code() {
 push_work_code() {
   option_or_message="$1"
   message="$2"
+  curr_branch_name="$(get_branch_name)"
+
+  # check and halt if this is a direct push
+  if [ "$curr_branch_name" = "develop" ] || [ "$curr_branch_name" = "qa" ] || [ "$curr_branch_name" = "master" ]; then
+    clear
+    echo "\n${RED}You sure you want to push directly to $curr_branch_name?"
+    read
+  fi
 
   # take option -n to skip test
   if [ "$option_or_message" = "-n" ]; then
     ensure_correct_user_config "$EMAIL_HOUSECANARY" &&
     git add . &&
     git commit -n &&
-    git push origin $(get_branch_name)
+    git push origin "$curr_branch_name"
   else
     run_test &&
     push_code "$EMAIL_HOUSECANARY" "$option_or_message"
