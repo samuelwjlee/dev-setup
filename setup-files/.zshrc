@@ -77,7 +77,6 @@ push_code() {
 
 push_work_code() {
   option_or_message="$1"
-  message="$2"
   curr_branch_name="$(get_branch_name)"
 
   # check and halt if this is a direct push
@@ -87,8 +86,11 @@ push_work_code() {
     read
   fi
 
-  # take option -n to skip test
+  # take option -n as first arg to skip test
   if [ "$option_or_message" = "-n" ]; then
+    # second arg, if given, is the commit message
+    message="$2"
+
     ensure_correct_user_config "$EMAIL_HOUSECANARY" &&
     git add . &&
     git commit -n -m "$message" &&
