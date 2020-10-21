@@ -13,7 +13,16 @@ EMAIL_HOUSECANARY="samlee@housecanary.com"
 EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
 USERNAME="Samuel Lee"
 
+# color definitions
 RED='\033[0;31m'
+GREEN='\033[0;32m'
+
+print_message() {
+  message="$1"
+  color="$2"
+
+  echo "\n$color$message\n"
+}
 
 add_ssh() {
   user_email="$1"
@@ -82,7 +91,7 @@ push_work_code() {
   # check and halt if this is a direct push
   if [ "$curr_branch_name" = "develop" ] || [ "$curr_branch_name" = "qa" ] || [ "$curr_branch_name" = "master" ]; then
     clear
-    echo "\n${RED}You sure you want to push directly to $curr_branch_name?"
+    print_message "You sure you want to push directly to $curr_branch_name?" "$RED"
     read
   fi
 
@@ -108,11 +117,17 @@ push_personal_code() {
 
 kill_process_on_port() {
   port_num="$1"
-  sudo kill -9 $(sudo lsof -t -i:"$port_num")
+  process_list=$(sudo lsof -t -i:"$port_num")
+
+  if [ "$process_list" = "" ]; then
+    print_message "No process to kill 👍🏼" "$GREEN"
+  else
+    sudo kill -9 "$process_list"
+    print_message "All process running on $port_num terminated ✅" "$GREEN"
+  fi
 }
 
 alias diff="git diff"
 alias gcod="gco develop && git pull origin develop"
 alias gcoq="gco qa && git pull origin qa"
 alias start="npm run start"
-alias startp="npm run release && npm run serve"

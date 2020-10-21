@@ -23,7 +23,7 @@ write_files_to_local() {
   sudo cp $REPO_ROOT/.gitignore_global ~/.gitignore_global
   sudo cp $REPO_ROOT/vscode_settings.json ~/Library/Application\ Support/Code/User/settings.json
 
-  echo "${GREEN}✅✅✅ SUCCESS! ✅✅✅\n"
+  echo "$GREEN SUCCESS! ✅\n"
 }
 
 # execute functions here
