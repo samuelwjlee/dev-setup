@@ -52,7 +52,6 @@ get_branch_name() {
 }
 
 pull_remote() {
-  git fetch &&
   git pull origin $(get_branch_name)
 }
 
