@@ -110,7 +110,7 @@ kill_process_on_port() {
   process_list=$(sudo lsof -t -i:"$port_num")
 
   if [ "$process_list" = "" ]; then
-    print_message "No process to kill 👍🏼" "$GREEN"
+    print_message "No process to kill. We're all good here 👌🏼." "$GREEN"
   else
     sudo kill -9 "$process_list"
     print_message "All process running on $port_num terminated ✅" "$GREEN"

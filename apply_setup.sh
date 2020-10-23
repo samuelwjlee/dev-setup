@@ -11,7 +11,7 @@ write_files_to_local() {
   sudo cp $REPO_ROOT/vscode_settings.json ~/Library/Application\ Support/Code/User/settings.json
   sudo cp $REPO_ROOT/constants.sh ~/constants.sh
 
-  echo "${GREEN}SUCCESS! ✅\n"
+  echo "${GREEN}Setup files applied successfully! ✅\n"
 }
 
 # execute functions here
