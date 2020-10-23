@@ -6,16 +6,7 @@ source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/git/git.plugin.zsh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# identification variables
-PATH_SSH_KEY_HOUSECANARY="$(echo ~/.ssh/id_rsa_housecanary)"
-PATH_SSH_KEY_SAMUELWJLEE="$(echo ~/.ssh/id_rsa_personal)"
-EMAIL_HOUSECANARY="samlee@housecanary.com"
-EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
-USERNAME="Samuel Lee"
-
-# color definitions
-RED='\033[0;31m'
-GREEN='\033[0;32m'
+source ~/constants.sh
 
 print_message() {
   message="$1"

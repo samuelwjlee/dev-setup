@@ -1,5 +1,6 @@
 #!/bin/bash
-# This script has a list of apps that will be installed to a target machine
+
+source ~/constants.sh
 
 APPS_TO_INSTALL=(
   "google-chrome"
@@ -8,8 +9,6 @@ APPS_TO_INSTALL=(
   "iterm2"
   "spotify"
 )
-
-LIGHT_BLUE='\033[1;34m'
 
 print_message() {
   clear
