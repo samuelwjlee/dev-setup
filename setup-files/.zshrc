@@ -8,6 +8,8 @@ source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source ~/constants.sh
 
+# TODO: move all the non-zsh related funcs into .bashrc
+
 add_ssh() {
   user_email="$1"
   if [ "$user_email" = "$EMAIL_HOUSECANARY" ]; then
