@@ -8,13 +8,6 @@ source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source ~/constants.sh
 
-print_message() {
-  message="$1"
-  color="$2"
-
-  echo "\n$color$message\n"
-}
-
 add_ssh() {
   user_email="$1"
   if [ "$user_email" = "$EMAIL_HOUSECANARY" ]; then

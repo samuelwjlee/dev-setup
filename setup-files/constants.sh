@@ -22,3 +22,10 @@ PATH_SSH_KEY_SAMUELWJLEE="$(echo ~/.ssh/id_rsa_personal)"
 EMAIL_HOUSECANARY="samlee@housecanary.com"
 EMAIL_SAMUELWJLEE="samuelwjlee@gmail.com"
 USERNAME="Samuel Lee"
+
+print_message() {
+  message="$1"
+  color="$2"
+
+  echo "\n$color$message\n"
+}
