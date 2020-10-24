@@ -1,14 +1,15 @@
+#!/bin/bash
 # zsh specific config
 ZSH="$(echo ~/.oh-my-zsh)"
 ZSH_THEME="agnoster"
 plugins=(zsh-syntax-highlighting)
+
 source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/git/git.plugin.zsh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source ~/constants.sh
-
-# TODO: move all the non-zsh related funcs into .bashrc
+source ~/generic_funcs.sh
 
 add_ssh() {
   user_email="$1"

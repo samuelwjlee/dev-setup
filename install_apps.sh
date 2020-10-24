@@ -1,6 +1,6 @@
 #!/bin/bash
-
 source ~/constants.sh
+source ~/generic_funcs.sh
 
 APPS_TO_INSTALL=(
   "google-chrome"
