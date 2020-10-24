@@ -34,9 +34,14 @@ ensure_correct_user_config() {
   fi
 }
 
+cdda() {
+  cd ~/Documents/dandelion/ &&
+  ensure_correct_user_config "$EMAIL_SAMUELWJLEE" &&
+  pull_remote
+}
+
 cdcw() {
-  cd &&
-  cd Documents/consumer-web/ &&
+  cd ~/Documents/consumer-web/ &&
   ensure_correct_user_config "$EMAIL_HOUSECANARY" &&
   pull_remote
 }
