@@ -8,6 +8,7 @@ APPS_TO_INSTALL=(
   "visual-studio-code"
   "iterm2"
   "spotify"
+  "alfred"
 )
 
 ensure_xcode_homebrew() {
