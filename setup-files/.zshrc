@@ -8,8 +8,8 @@ source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/git/git.plugin.zsh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source ~/constants.sh
-source ~/generic_funcs.sh
+source ./constants.sh
+source ./generic_funcs.sh
 
 add_ssh() {
   user_email="$1"
