@@ -8,5 +8,11 @@
     "workbench.editor.highlightModifiedTabs": true,
     "typescript.updateImportsOnFileMove.enabled": "always",
     "workbench.activityBar.visible": false,
-    "css.validate": false
+    "css.validate": false,
+    "gitweblinks.gitLabEnterprise": [
+        {
+            "baseUrl": "https://git.housecanary.net",
+            "sshUrl": "git@git.housecanary.net"
+        }
+    ]
 }
