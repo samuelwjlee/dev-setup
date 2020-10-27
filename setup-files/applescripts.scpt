@@ -13,22 +13,25 @@ on toggle_vpn()
 	end tell
 end toggle_vpn
 
-on toggle_todoist_calendar()
+on toggle_trello_todoist_calendar()
+  set isTrelloRunning to application "Trello" is running
   set isTodoistRunning to application "Todoist" is running
   set isCalendarRunning to application "Calendar" is running
 
-  if isTodoistRunning and isCalendarRunning then
+  if isTrelloRunning and isTodoistRunning and isCalendarRunning then
+    tell application "Trello" to quit
     tell application "Todoist" to quit
     tell application "Calendar" to quit
 
-    return "Quit Todoist and Calendar"
+    return "Quit Trello, Todoist and Calendar"
   else
+    tell application "Trello" to activate
     tell application "Todoist" to activate
     tell application "Calendar" to activate
 
-    return "Activate Todoist and Calendar"
+    return "Activate Trello,Todoist and Calendar"
   end if
-end toggle_todoist_calendar
+end toggle_trello_todoist_calendar
 
 on toggle_mail_messages()
   set isMailRunning to application "Mail.application" is running
