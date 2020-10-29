@@ -26,6 +26,8 @@ add_ssh() {
 }
 
 ensure_correct_user_config() {
+  ensure_gitignore_global
+
   user_email="$1"
   if [ "$user_email" = "$EMAIL_HOUSECANARY" ] || [ "$user_email" = "$EMAIL_SAMUELWJLEE"  ]; then
     add_ssh "$user_email"

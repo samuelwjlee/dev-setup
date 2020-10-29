@@ -1,6 +1,9 @@
 #!/bin/bash
-source ./constants.sh
-source ./generic_funcs.sh
+
+REPO_ROOT="./setup-files"
+
+source "$REPO_ROOT/constants.sh"
+source "$REPO_ROOT/generic_funcs.sh"
 
 APPS_TO_INSTALL=(
   "google-chrome"

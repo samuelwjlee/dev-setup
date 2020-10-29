@@ -33,3 +33,7 @@ commit_changes() {
   git add . &&
   git commit -m "$message"
 }
+
+ensure_gitignore_global() {
+  git config --global core.excludesfile ~/.gitignore_global
+}

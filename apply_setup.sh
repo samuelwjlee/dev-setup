@@ -3,7 +3,7 @@
 REPO_ROOT="./setup-files"
 
 source "$REPO_ROOT/constants.sh"
-source ./generic_funcs.sh
+source "$REPO_ROOT/generic_funcs.sh"
 
 # automate creating or updating config files to local
 write_files_to_local() {
