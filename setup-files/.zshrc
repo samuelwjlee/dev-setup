@@ -67,10 +67,12 @@ push_work_code() {
   option_or_message="$1"
   curr_branch_name="$(get_branch_name)"
 
-  # check and halt if this is a direct push
-  if [ "$curr_branch_name" = "develop" ] || [ "$curr_branch_name" = "qa" ] || [ "$curr_branch_name" = "master" ]; then
+  # check and halt if this is a direct push to develop, qa, or master branch
+  if [ "$curr_branch_name" = "develop" ] ||
+     [ "$curr_branch_name" = "qa" ] ||
+     [ "$curr_branch_name" = "master" ]; then
     clear
-    print_message "You sure you want to push directly to $curr_branch_name?" "$RED"
+    print_message"You sure you want to push directly to $curr_branch_name?" "$RED"
     read
   fi
 
