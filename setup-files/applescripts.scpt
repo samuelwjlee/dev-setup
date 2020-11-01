@@ -49,3 +49,16 @@ on toggle_mail_messages()
     return "Activate Mail and Messages"
   end if
 end toggle_mail_messages
+
+# Generic func to toggle application
+on toggle_app()
+  set appName to "App"
+  tell application appName
+    set isAppRunning to application appName is running
+    if isAppRunning then
+      tell application appName to quit
+    else
+      tell application appName to activate
+    end if
+  end tell
+end toggle_app
