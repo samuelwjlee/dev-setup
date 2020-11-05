@@ -25,19 +25,22 @@ on toggle_app()
 end toggle_app
 
 # func to open all work relevant apps and resize windows to prefered size and loc
-on toggle_work_apps()
-  if application "iTerm" is not running then
-    tell application "iTerm"
-      activate
-      set bounds of front window to {0, 23, 650, 1440}
-    end tell
-	else
-		tell application "iTerm" to quit
+on toggle_iterm()
+  set appName to "iTerm"
+  set allAppsRunning to application "Visual Studio Code" is running and application "Google Chrome" is running and application appName is running
+
+  if application appName is not running then
+      tell application appName
+        activate
+        set bounds of front window to {0, 23, 650, 1440}
+      end tell
+  else if allAppsRunning
+    tell application appName to quit
+
+    # tells tunnelblick to quit
+    return false
   end if
 
-  if application "Visual Studio Code" is not running then
-    tell application "Visual Studio Code" to activate
-	else
-		tell application "Visual Studio Code" to quit
-  end if
-end toggle_work_apps
+  # tells tunnelblick to activate
+  return true
+end toggle_iterm
