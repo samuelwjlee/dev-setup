@@ -1,5 +1,4 @@
 #!/bin/bash
-source ./constants.sh
 
 print_message() {
   message="$1"
