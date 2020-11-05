@@ -37,20 +37,21 @@ ensure_correct_user_config() {
 }
 
 cdda() {
-  cd ~/Documents/dandelion/ &&
-  ensure_correct_user_config "$EMAIL_SAMUELWJLEE" &&
+  cd ~/Documents/dandelion/
+  ensure_correct_user_config "$EMAIL_SAMUELWJLEE"
   pull_remote
 }
 
 cdcw() {
-  cd ~/Documents/consumer-web/ &&
-  ensure_correct_user_config "$EMAIL_HOUSECANARY" &&
+  cd ~/Documents/consumer-web/
+  ensure_correct_user_config "$EMAIL_HOUSECANARY"
+  ensure_npm_packages_up_to_date
   pull_remote
 }
 
 run_test() {
-  npm run jest-clear-cache &&
-  npm run test -- -u &&
+  npm run jest-clear-cache
+  npm run test -- -u
   npm run update-css-types
 }
 
@@ -58,8 +59,8 @@ push_code() {
   email="$1"
   message="$2"
 
-  ensure_correct_user_config "$email" &&
-  commit_changes "$message" &&
+  ensure_correct_user_config "$email"
+  commit_changes "$message"
   git push origin $(get_branch_name)
 }
 
@@ -81,12 +82,12 @@ push_work_code() {
     # second arg, if given, is the commit message
     message="$2"
 
-    ensure_correct_user_config "$EMAIL_HOUSECANARY" &&
-    git add . &&
-    git commit -n -m "$message" &&
+    ensure_correct_user_config "$EMAIL_HOUSECANARY"
+    git add .
+    git commit -n -m "$message"
     git push origin "$curr_branch_name"
   else
-    run_test &&
+    run_test
     push_code "$EMAIL_HOUSECANARY" "$option_or_message"
   fi
 }
@@ -96,7 +97,33 @@ push_personal_code() {
   push_code "$EMAIL_SAMUELWJLEE" "$message"
 }
 
+ensure_npm_packages_up_to_date() {
+  curr_branch_name="$(get_branch_name)"
+  # load changes from remote to local
+  git fetch origin "$curr_branch_name"
+
+  # if there are changes in package.json that are about to be pulled in
+  if git diff "$curr_branch_name"...origin/"$curr_branch_name" | grep -q package.json; then
+    pull_remote
+    npm ci
+  fi
+}
+
+start() {
+  ensure_npm_packages_up_to_date
+  npm run start
+}
+
+gcod() {
+  ensure_npm_packages_up_to_date
+  git checkout develop
+  git pull origin develop
+}
+
+gcoq() {
+  ensure_npm_packages_up_to_date
+  git checkout qa
+  git pull origin qa
+}
+
 alias diff="git diff"
-alias gcod="gco develop && git pull origin develop"
-alias gcoq="gco qa && git pull origin qa"
-alias start="npm run start"
