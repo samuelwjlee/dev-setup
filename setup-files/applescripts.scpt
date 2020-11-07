@@ -44,3 +44,14 @@ on toggle_iterm()
   # tells tunnelblick to activate
   return true
 end toggle_iterm
+
+# set bounds func
+on set_bounds()
+  tell application "System Events" to tell process appName
+    set screenWidth to (do shell script "system_profiler SPDisplaysDataType | awk '/Resolution/{print $2}'")
+    set screenHeight to (do shell script "system_profiler SPDisplaysDataType | awk '/Resolution/{print $1}'")
+
+    set position of window 1 to {0, 0}
+    set size of window 1 to {screenWidth, screenHeight}
+  end tell
+end set_bounds
