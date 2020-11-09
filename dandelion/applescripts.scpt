@@ -49,7 +49,7 @@ end toggle_iterm
 on set_bounds()
   tell application "System Events" to tell process appName
     set screenWidth to (do shell script "system_profiler SPDisplaysDataType | awk '/Resolution/{print $2}'")
-    set screenHeight to (do shell script "system_profiler SPDisplaysDataType | awk '/Resolution/{print $1}'")
+    set screenHeight to (do shell script "system_profiler SPDisplaysDataType | awk '/Resolution/{print $4}'")
 
     set position of window 1 to {0, 0}
     set size of window 1 to {screenWidth, screenHeight}
