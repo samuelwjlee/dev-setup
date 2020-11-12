@@ -83,6 +83,7 @@ push_work_code() {
     # second arg, if given, is the commit message
     message="$2"
 
+    npm run update-css-types
     ensure_correct_user_config "$EMAIL_HOUSECANARY"
     git add .
     git commit -n -m "$message"
