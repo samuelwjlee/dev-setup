@@ -1,16 +1,28 @@
 # script to toggle Tunnelblick
 
 on toggle_vpn()
-	tell application "Tunnelblick"
-		set vpnState to get state of first configuration where name = "hc-3"
-		if vpnState = "CONNECTED" then
-			disconnect all
-			return "VPN disconnected"
-		else
-			connect "hc-3"
-			return "VPN connected"
-		end if
-	end tell
+  tell application "Tunnelblick"
+    set vpnState to get state of first configuration where name = "hc-3"
+
+    if vpnState = "CONNECTED" and shouldActivate = "false" then
+      disconnect all
+    else if shouldActivate = "true"
+        connect "hc-3"
+
+        delay 10
+
+        tell application "iTerm"
+          tell current session of current window
+            write text "cdcw"
+            write text "start"
+
+            set commandTab to split horizontally with default profile
+            tell commandTab to write text "cdcw"
+          end tell
+        end tell
+
+    end if
+  end tell
 end toggle_vpn
 
 # Generic func to toggle application
@@ -31,34 +43,16 @@ on toggle_iterm()
   set screenHeight to (do shell script "system_profiler SPDisplaysDataType | awk '/Resolution/{print $4}'")
 
   if application appName is not running then
-    tell application appName
-      activate
-      set bounds of front window to {0, 0, 700, screenHeight}
-    end tell
-
-    tell application appName
-      tell current session of current window
-        # wait for Tunnelblick to connect
-        delay 5
-
-        write text "cdcw"
-        write text "start"
-
-        set commandTab to split horizontally with default profile
-
-        tell commandTab
-          write text "cdcw"
-        end tell
-      end tell
-    end tell
+    tell application appName to activate
+    tell application appName to set bounds of front window to {0, 0, 700, screenHeight}
   else if allAppsRunning
-    tell application appName
+    tell application "iTerm"
       tell current session of current window
         write text "kill_process_on_port 3000"
       end tell
     end tell
 
-    tell application appName to quit
+    tell application "iTerm" to quit
 
     # tells tunnelblick to quit
     return false
