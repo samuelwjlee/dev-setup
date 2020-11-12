@@ -34,23 +34,30 @@ on toggle_iterm()
     tell application appName
       activate
       set bounds of front window to {0, 0, 700, screenHeight}
+    end tell
 
+    tell application appName
       tell current session of current window
         # wait for Tunnelblick to connect
         delay 5
 
         write text "cdcw"
         write text "start"
+
         set commandTab to split horizontally with default profile
 
         tell commandTab
           write text "cdcw"
         end tell
-
       end tell
     end tell
   else if allAppsRunning
-    (do shell script "kill_process_on_port 3000")
+    tell application appName
+      tell current session of current window
+        write text "kill_process_on_port 3000"
+      end tell
+    end tell
+
     tell application appName to quit
 
     # tells tunnelblick to quit
