@@ -25,3 +25,5 @@ write_files_to_local() {
 
 # execute functions here
 write_files_to_local
+
+# https://glitchbone.github.io/vscode-base16-term/
