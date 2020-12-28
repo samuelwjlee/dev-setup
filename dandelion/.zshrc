@@ -8,7 +8,7 @@ source $ZSH/oh-my-zsh.sh
 source $ZSH/plugins/git/git.plugin.zsh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-DANDELION_ROOT="./dandelion"
+DANDELION_ROOT="$(echo ~/dandelion)"
 source "$DANDELION_ROOT/constants.sh"
 source "$DANDELION_ROOT/generic_funcs.sh"
 
