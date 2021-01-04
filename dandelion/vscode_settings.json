@@ -18,6 +18,10 @@
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "/bin/zsh",
     "terminal.integrated.fontFamily": "Meslo LG L DZ for Powerline",
+    "terminal.integrated.allowChords": false,
+    "terminal.integrated.drawBoldTextInBrightColors": false,
+    "terminal.integrated.experimentalLinkProvider": false,
+    "terminal.integrated.rendererType": "auto",
     "workbench.colorCustomizations": {
         "terminal.background":"#1E1E1E",
         "terminal.foreground":"#A7A7A7",
