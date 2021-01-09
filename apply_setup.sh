@@ -19,6 +19,8 @@ write_files_to_local() {
 
   sudo cp $REPO_ROOT/constants.sh ~/dandelion/constants.sh
   sudo cp $REPO_ROOT/generic_funcs.sh ~/dandelion/generic_funcs.sh
+  sudo cp $REPO_ROOT/hc_funcs.sh ~/dandelion/hc_funcs.sh
+  sudo cp $REPO_ROOT/personal_funcs.sh ~/dandelion/personal_funcs.sh
 
   print_message "Setup files applied successfully! ✅" $GREEN
 }
