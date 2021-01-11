@@ -2,8 +2,6 @@
 
 on toggle_vpn()
 	tell application "Tunnelblick"
-		set shouldDisconnect to application "Visual Studio Code" is running and application "Slack" is running and application "Google Chrome" is running
-
 		set vpnState to get state of first configuration where name = "hc-3"
 
 		if vpnState = "CONNECTED" and shouldDisconnect then
@@ -15,9 +13,7 @@ on toggle_vpn()
 end toggle_vpn
 
 # Generic func to toggle application
-on toggle_app()
-  set appName to "APP_NAME"
-
+on toggle_app(appName)
   if application appName is running then
     tell application appName to quit
   else
@@ -26,7 +22,7 @@ on toggle_app()
 end toggle_app
 
 # set bounds func
-on set_window_to_fullscreen()
+on set_window_to_fullscreen(appName)
   tell application "System Events" to tell process appName
     set screenWidth to (do shell script "system_profiler SPDisplaysDataType | awk '/Resolution/{print $2}'")
     set screenHeight to (do shell script "system_profiler SPDisplaysDataType | awk '/Resolution/{print $4}'")
