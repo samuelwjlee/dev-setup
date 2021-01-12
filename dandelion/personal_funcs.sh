@@ -1,17 +1,16 @@
 #!/bin/bash
+
 DANDELION_ROOT="$(echo ~/dandelion)"
 source "$DANDELION_ROOT/constants.sh"
 source "$DANDELION_ROOT/generic_funcs.sh"
 
 cdda() {
-  cd ~/Documents/dandelion/
-  ensure_correct_user_config "$EMAIL_SAMUELWJLEE"
+  cd_into_repo "~/Documents/dandelion/" "$EMAIL_SAMUELWJLEE"
   pull_remote
 }
 
 cdwf() {
-  cd ~/Documents/wordful/
-  ensure_correct_user_config "$EMAIL_SAMUELWJLEE"
+  cd_into_repo "~/Documents/wordful/" "$EMAIL_SAMUELWJLEE"
   pull_remote
 }
 

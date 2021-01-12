@@ -16,6 +16,11 @@ get_branch_name() {
   git rev-parse --abbrev-ref HEAD
 }
 
+cd_into_repo() {
+  cd "$(echo $1)"
+  ensure_correct_user_config "$2"
+}
+
 pull_remote() {
   git pull origin $(get_branch_name)
 }

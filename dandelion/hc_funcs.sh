@@ -16,8 +16,7 @@ gcoq() {
 }
 
 cdcw() {
-  cd ~/Documents/consumer-web/
-  ensure_correct_user_config "$EMAIL_HOUSECANARY"
+  cd_into_repo "~/Documents/consumer-web/" "$EMAIL_HOUSECANARY"
   ensure_npm_packages_up_to_date
   pull_remote
 }
