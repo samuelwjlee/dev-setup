@@ -17,7 +17,7 @@ get_branch_name() {
 }
 
 cd_into_repo() {
-  cd "$(echo $1)"
+  cd "$1"
   ensure_correct_user_config "$2"
 }
 

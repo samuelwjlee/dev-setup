@@ -5,12 +5,12 @@ source "$DANDELION_ROOT/constants.sh"
 source "$DANDELION_ROOT/generic_funcs.sh"
 
 cdda() {
-  cd_into_repo "~/Documents/dandelion/" "$EMAIL_SAMUELWJLEE"
+  cd_into_repo "$(echo ~/Documents/dandelion/)" "$EMAIL_SAMUELWJLEE"
   pull_remote
 }
 
 cdwf() {
-  cd_into_repo "~/Documents/wordful/" "$EMAIL_SAMUELWJLEE"
+  cd_into_repo "$(echo ~/Documents/wordful/)" "$EMAIL_SAMUELWJLEE"
   pull_remote
 }
 

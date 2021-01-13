@@ -16,7 +16,7 @@ gcoq() {
 }
 
 cdcw() {
-  cd_into_repo "~/Documents/consumer-web/" "$EMAIL_HOUSECANARY"
+  cd_into_repo "$(echo ~/Documents/consumer-web/)" "$EMAIL_HOUSECANARY"
   ensure_npm_packages_up_to_date
   pull_remote
 }
