@@ -68,3 +68,7 @@ add_ssh() {
     fi
   fi
 }
+
+stop_all_docker_containers() {
+  docker stop $(docker ps -a -q)
+}
