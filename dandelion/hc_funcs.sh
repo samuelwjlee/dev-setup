@@ -72,3 +72,12 @@ start() {
   ensure_npm_packages_up_to_date
   npm run start
 }
+
+create_email_preview() {
+  path_to_repo="$(pwd)"
+  if [ path_to_repo == *"consumer-api"* ] then
+    go run ./cmd/emailpreview/main.go
+  else
+    echo "Invalid repo. Please cd into consumer-api."
+  fi
+}
