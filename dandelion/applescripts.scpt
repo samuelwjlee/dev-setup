@@ -1,15 +1,20 @@
 # script to toggle Tunnelblick
 
 on toggle_vpn()
-	tell application "Tunnelblick"
-		set vpnState to get state of first configuration where name = "hc-3"
+  tell application "Tunnelblick"
+    set shouldSyncrhonizeDisconnect to application "Visual Studio Code" is running and application "Slack" is running and application "Google Chrome" is running
+    set shouldOnlyDisconnectVPN to application "Visual Studio Code" is not running and application "Slack" is not running and application "Google Chrome" is not running
 
-		if vpnState = "CONNECTED" and shouldDisconnect then
-			disconnect all
-		else
-			connect "hc-3"
-		end if
-	end tell
+    set vpnState to get state of first configuration where name = "developers"
+
+    if vpnState = "CONNECTED" and shouldSyncrhonizeDisconnect then
+      disconnect all
+    else if vpnState = "CONNECTED" and shouldOnlyDisconnectVPN then
+      disconnect all
+    else
+      connect "developers"
+    end if
+  end tell
 end toggle_vpn
 
 # Generic func to toggle application
